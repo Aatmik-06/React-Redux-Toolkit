@@ -28,18 +28,49 @@
 // 06 Nov
 // Color change using redux toolkit
 
+// import { useSelector,useDispatch } from "react-redux";
+// import { colorChange } from "./bgcolorSlice";
+
+// const App=()=>{
+//   const myclr = useSelector((state)=>state.mycolor.bgclr);
+//   const dispatch = useDispatch();
+//   return(
+//     <>
+//     <center>
+//     <h1>This is my Color Change App</h1>
+//     <button onClick={()=>{dispatch(colorChange())}}>CLick</button>
+//     <div style={{width:"300px",height:"200px",backgroundColor:myclr}}></div>
+//     </center>
+//     </>
+//   )
+
+// }
+// export default App;
+
+
+
+
+
+
+// 07 Nov
+// Redux Toolkit by global with  payload
+
 import { useSelector,useDispatch } from "react-redux";
 import { colorChange } from "./bgcolorSlice";
+import { useState } from "react";
 
 const App=()=>{
-  const myclr = useSelector((state)=>state.mycolor.bgclr);
+  const[color,setColor]= useState("");
+  const bgclr = useSelector((state)=>state.mycolor.bgcolor)
   const dispatch = useDispatch();
   return(
     <>
     <center>
     <h1>This is my Color Change App</h1>
-    <button onClick={()=>{dispatch(colorChange())}}>CLick</button>
-    <div style={{width:"300px",height:"200px",backgroundColor:myclr}}></div>
+    Enter Color : <input type="text" value={color} onChange={(e)=>{setColor(e.target.value)}}/>
+    <button onClick={()=>{dispatch(colorChange(color))}}>CLick</button>
+    <br /><br />
+    <div style={{width:"300px",height:"200px",backgroundColor:bgclr}}></div>
     </center>
     </>
   )
